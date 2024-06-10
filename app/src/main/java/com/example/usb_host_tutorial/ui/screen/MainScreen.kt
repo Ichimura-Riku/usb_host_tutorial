@@ -10,13 +10,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.usb_host_tutorial.ui.theme.Usb_host_tutorialTheme
+import com.example.usb_host_tutorial.ui.viewmodel.MainViewModel
+import javax.inject.Inject
 
 
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    terminalText : List<String>
+    terminalText : List<String>,
+    viewModel: MainViewModel,
+//    openPort: () -> Boolean,
+
 ){
+    viewModel.usbPortManager
 
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -33,12 +39,3 @@ fun MainScreen(
     }
 }
 
-
-
-@Preview(showBackground = true)
-@Composable
-fun MainScreenPreview() {
-    Usb_host_tutorialTheme {
-        MainScreen(terminalText = mutableListOf("hello"))
-    }
-}
