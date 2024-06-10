@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -18,6 +20,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
     }
 
     buildTypes {
@@ -59,6 +62,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation("com.github.mik3y:usb-serial-for-android:3.7.3")
+    implementation("com.google.dagger:hilt-android:2.48")
+    ksp("com.google.dagger:hilt-android-compiler:2.48")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -67,3 +73,16 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+
+//dependencies {
+//    // Required -- JUnit 4 framework
+//    testImplementation "junit:junit:$jUnitVersion"
+//    // Optional -- Robolectric environment
+//    testImplementation "androidx.test:core:$androidXTestVersion"
+//    // Optional -- Mockito framework
+//    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+//    // Optional -- mockito-kotlin
+//    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion"
+//    // Optional -- Mockk framework
+//    testImplementation "io.mockk:mockk:$mockkVersion"
+//}
