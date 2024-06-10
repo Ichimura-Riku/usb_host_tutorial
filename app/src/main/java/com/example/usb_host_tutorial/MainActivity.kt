@@ -14,13 +14,13 @@ class MainActivity : ComponentActivity() {
 
 
 
-    lateinit var viewModel: MainViewModel
+//    lateinit var viewModel: MainViewModel
 
     init {
 
     }
 
-    val usbPortManager: UsbPortManager = viewModel.usbPortManager
+//    val usbPortManager: UsbPortManager = viewModel.usbPortManager
 //    private fun openPort(): () -> Boolean = {usbPortManager.openPort(this)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
 
                 MainScreen(
                     terminalText = mutableListOf("hello"),
-                    viewModel = viewModel,
+//                    viewModel = viewModel,
 //                    openPort = openPort()
                 )
 //                MainScreen(terminalText = checkAllDevice())

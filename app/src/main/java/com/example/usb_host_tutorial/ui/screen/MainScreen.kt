@@ -18,11 +18,11 @@ import javax.inject.Inject
 fun MainScreen(
     modifier: Modifier = Modifier,
     terminalText : List<String>,
-    viewModel: MainViewModel,
+//    viewModel: MainViewModel,
 //    openPort: () -> Boolean,
 
 ){
-    viewModel.usbPortManager
+//    viewModel.usbPortManager
 
     Surface(
         modifier = modifier.fillMaxSize(),
