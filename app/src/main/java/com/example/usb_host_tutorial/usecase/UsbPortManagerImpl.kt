@@ -1,21 +1,15 @@
 package com.example.usb_host_tutorial.usecase
 
-import android.app.Activity
-import android.content.Context.USB_SERVICE
-import android.hardware.usb.UsbDeviceConnection
+import android.content.Context
 import android.hardware.usb.UsbManager
 import com.hoho.android.usbserial.driver.UsbSerialDriver
-import com.hoho.android.usbserial.driver.UsbSerialPort
-import com.hoho.android.usbserial.driver.UsbSerialProber
-import dagger.hilt.android.qualifiers.ActivityContext
-import dagger.hilt.android.scopes.ActivityRetainedScoped
-import dagger.hilt.android.scopes.ActivityScoped
-import java.lang.Exception
+import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 
 class UsbPortManagerImpl @Inject constructor(
-//    private val activity: Activity
+    @ApplicationContext context: Context
 ) : UsbPortManager {
     private lateinit var _usbManager: UsbManager
     private lateinit var _availableDrivers: List<UsbSerialDriver>
