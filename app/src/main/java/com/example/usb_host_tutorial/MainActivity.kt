@@ -3,18 +3,18 @@ package com.example.usb_host_tutorial
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.lifecycle.ViewModel
 import com.example.usb_host_tutorial.ui.screen.MainScreen
 import com.example.usb_host_tutorial.ui.theme.Usb_host_tutorialTheme
 import com.example.usb_host_tutorial.ui.viewmodel.MainViewModel
-import com.example.usb_host_tutorial.usecase.UsbPortManager
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
 
 
-//    lateinit var viewModel: MainViewModel
 
     init {
 
@@ -31,7 +31,6 @@ class MainActivity : ComponentActivity() {
 
                 MainScreen(
                     terminalText = mutableListOf("hello"),
-//                    viewModel = viewModel,
 //                    openPort = openPort()
                 )
 //                MainScreen(terminalText = checkAllDevice())

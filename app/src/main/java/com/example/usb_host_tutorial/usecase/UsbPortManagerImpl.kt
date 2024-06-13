@@ -1,6 +1,8 @@
 package com.example.usb_host_tutorial.usecase
 
+import android.app.Activity
 import android.content.Context
+import android.content.Context.USB_SERVICE
 import android.hardware.usb.UsbManager
 import com.hoho.android.usbserial.driver.UsbSerialDriver
 import dagger.hilt.android.components.ActivityComponent
@@ -9,13 +11,15 @@ import javax.inject.Inject
 
 
 class UsbPortManagerImpl @Inject constructor(
-    @ApplicationContext context: Context
+    @ApplicationContext val context: Context
 ) : UsbPortManager {
     private lateinit var _usbManager: UsbManager
     private lateinit var _availableDrivers: List<UsbSerialDriver>
 
     //
     override fun openPort(): Boolean {
+        val activity: Activity = context as Activity
+        activity.getSystemService(USB_SERVICE)
 //         _usbManager = activity.getSystemService(USB_SERVICE) as UsbManager
 //        _availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(_usbManager)
 //        if (_availableDrivers.isEmpty()) {
