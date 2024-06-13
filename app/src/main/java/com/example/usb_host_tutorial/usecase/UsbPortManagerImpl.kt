@@ -10,15 +10,14 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 
-class UsbPortManagerImpl @Inject constructor(
-    @ApplicationContext val context: Context
+class UsbPortManagerImpl (
+    private val activity: Activity
 ) : UsbPortManager {
     private lateinit var _usbManager: UsbManager
     private lateinit var _availableDrivers: List<UsbSerialDriver>
 
     //
     override fun openPort(): Boolean {
-        val activity: Activity = context as Activity
         activity.getSystemService(USB_SERVICE)
 //         _usbManager = activity.getSystemService(USB_SERVICE) as UsbManager
 //        _availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(_usbManager)

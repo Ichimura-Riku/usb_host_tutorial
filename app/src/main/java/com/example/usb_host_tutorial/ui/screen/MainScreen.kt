@@ -1,5 +1,6 @@
 package com.example.usb_host_tutorial.ui.screen
 
+import android.app.Activity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -11,16 +12,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.usb_host_tutorial.ui.viewmodel.MainViewModel
+import com.example.usb_host_tutorial.usecase.UsbPortManager
 
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
     terminalText : List<String>,
-    viewModel: MainViewModel = hiltViewModel(),
+    usbPortManager: UsbPortManager,
 //    openPort: () -> Boolean,
 
 ){
-    viewModel.usbPortManager.openPort()
+
     Surface(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
