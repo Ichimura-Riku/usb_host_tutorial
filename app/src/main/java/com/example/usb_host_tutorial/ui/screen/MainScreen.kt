@@ -22,7 +22,7 @@ fun MainScreen(
 //    openPort: () -> Boolean,
 
 ){
-
+    usbPortManager.openPort()
     Surface(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
