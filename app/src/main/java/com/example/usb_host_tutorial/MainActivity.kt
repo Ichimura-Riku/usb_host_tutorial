@@ -24,17 +24,15 @@ class MainActivity : ComponentActivity() {
     val usbPortManager = UsbPortManagerImpl(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val  isOpenPort = usbPortManager.openPort()
         setContent {
             Usb_host_tutorialTheme {
                 // A surface container using the 'background' color from the theme
 
                 MainScreen(
-                    terminalText = mutableListOf("hello"),
-//                    openPort = openPort()
+                    isOpenPort = isOpenPort,
                     usbPortManager= usbPortManager
                 )
-//                MainScreen(terminalText = checkAllDevice())
-
             }
         }
     }

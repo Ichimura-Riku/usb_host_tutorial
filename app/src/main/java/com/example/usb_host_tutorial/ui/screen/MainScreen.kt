@@ -17,12 +17,12 @@ import com.example.usb_host_tutorial.usecase.UsbPortManager
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    terminalText : List<String>,
+    isOpenPort: Boolean,
     usbPortManager: UsbPortManager,
 //    openPort: () -> Boolean,
 
 ){
-    usbPortManager.openPort()
+
     Surface(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -33,7 +33,7 @@ fun MainScreen(
             contentAlignment = Alignment.Center,
         ){
 
-            if (terminalText.isNotEmpty()) Text(terminalText[0]) else Text(text = "Empty")
+            if (isOpenPort) Text("Hello World") else Text("Port Opened")
         }
     }
 }
