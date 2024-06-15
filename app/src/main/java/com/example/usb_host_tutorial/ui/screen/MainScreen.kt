@@ -19,7 +19,7 @@ fun MainScreen(
     modifier: Modifier = Modifier,
     isOpenPort: Boolean,
     usbPortManager: UsbPortManager,
-//    openPort: () -> Boolean,
+    portStatus: String,
 
 ){
 
@@ -32,8 +32,7 @@ fun MainScreen(
             modifier = modifier,
             contentAlignment = Alignment.Center,
         ){
-
-            if (isOpenPort) Text("Hello World") else Text("Port Opened")
+            Text(portStatus)
         }
     }
 }

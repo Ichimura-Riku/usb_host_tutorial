@@ -14,4 +14,5 @@ interface UsbPortManager {
       */
     fun streamData(): UsbSerialDriver
 
+    fun getPortStatus(): String
 }
