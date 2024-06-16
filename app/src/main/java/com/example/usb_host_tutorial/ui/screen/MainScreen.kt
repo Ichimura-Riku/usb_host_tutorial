@@ -17,11 +17,13 @@ import com.example.usb_host_tutorial.usecase.UsbPortManager
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    isOpenPort: Boolean,
-    usbPortManager: UsbPortManager,
-    portStatus: String,
+//    isOpenPort: Boolean,
+//    usbPortManager: UsbPortManager,
+//    portStatus: String,
+    viewModel: MainViewModel = hiltViewModel()
 
 ){
+//    val usbPortManager: UsbPortManager = viewModel.usbPortManager
 
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -32,7 +34,7 @@ fun MainScreen(
             modifier = modifier,
             contentAlignment = Alignment.Center,
         ){
-            Text(portStatus)
+            Text("hello world")
         }
     }
 }

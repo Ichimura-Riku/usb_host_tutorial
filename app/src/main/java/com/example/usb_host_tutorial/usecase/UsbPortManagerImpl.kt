@@ -1,57 +1,66 @@
 package com.example.usb_host_tutorial.usecase
 
 import android.app.Activity
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Context.USB_SERVICE
+import android.content.Intent
 import android.hardware.usb.UsbDeviceConnection
 import android.hardware.usb.UsbManager
+import android.os.Build
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions.Companion.ACTION_REQUEST_PERMISSIONS
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat.getSystemService
 import com.hoho.android.usbserial.driver.UsbSerialDriver
 import com.hoho.android.usbserial.driver.UsbSerialPort
 import com.hoho.android.usbserial.driver.UsbSerialProber
+import javax.inject.Inject
 
 
-class UsbPortManagerImpl (
-    private val activity: Activity
+class UsbPortManagerImpl @Inject constructor(
+    private val context: Context
 ) : UsbPortManager {
     private lateinit var _usbManager: UsbManager
     private lateinit var _availableDrivers: List<UsbSerialDriver>
-    private var _portStatus = "clear"
+    private var _portStatus = "Disconnection"
 
-    //
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun openPort(): Boolean {
-//        activity.getSystemService(USB_SERVICE)
-//         _usbManager = activity.getSystemService(USB_SERVICE) as UsbManager
-//        _availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(_usbManager)
-//        if (_availableDrivers.isEmpty()) {
-//            _portStatus = "isEmpty available Drivers"
-//            return false
-//        } else {
-//            val driver: UsbSerialDriver = _availableDrivers[0]
-//
-//
-//            val connection : UsbDeviceConnection = _usbManager.openDevice(driver.device)
-//                ?: run {
-//                    _portStatus = "Cannot open device"
-//                    return false
-//                }// add UsbManager.requestPermission(driver.getDevice(), ..) handling here
-//            val port = driver.ports[0] // Most devices have just one port (port 0)
-//            return try {
-//                port.open(connection)
-//                port.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE)
-//                true
-//            }catch(e: Exception) {
-//                _portStatus = "Cannot open port"
-//                false
-//            }
-//        }
-        return true
+        context.getSystemService(USB_SERVICE)
+        val intent = Intent(ACTION_REQUEST_PERMISSIONS) // 仮のintentActionを入れている
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(context,  1, intent, PendingIntent.FLAG_IMMUTABLE  )
+        val usbManager = context.getSystemService(USB_SERVICE) as UsbManager
+        val availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(usbManager)
+        if (availableDrivers.isEmpty()) {
+            _portStatus = "isEmpty available Drivers"
+            return false
+        } else {
+            val driver: UsbSerialDriver = availableDrivers[0]
+
+            val connection : UsbDeviceConnection = usbManager.openDevice(driver.device)
+                ?: run {
+                    usbManager.requestPermission(driver.device, pendingIntent)
+                    usbManager.openDevice(driver.device)
+                }// add UsbManager.requestPermission(driver.getDevice(), ..) handling here
+            val port = driver.ports[0] // Most devices have just one port (port 0)
+            return try {
+                port.open(connection)
+                port.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE)
+                _portStatus = "clear"
+                true
+            }catch(e: Exception) {
+                _portStatus = "Cannot open port"
+                false
+            }
+        }
     }
 
-    override fun getPortStatus(): String{
+    override fun getPortStatus(): String {
         return _portStatus
     }
 
-    override fun closePort(): Boolean{
+    override fun closePort(): Boolean {
         // Todo
         return false
     }
