@@ -8,14 +8,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.usb_host_tutorial.ui.theme.Usb_host_tutorialTheme
-
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.usb_host_tutorial.ui.viewmodel.MainViewModel
 
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    terminalText : List<String>
+    viewModel: MainViewModel = hiltViewModel()
+
 ){
 
     Surface(
@@ -27,18 +27,8 @@ fun MainScreen(
             modifier = modifier,
             contentAlignment = Alignment.Center,
         ){
-
-            if (terminalText.isNotEmpty()) Text(terminalText[0]) else Text(text = "Empty")
+            Text("hello world")
         }
     }
 }
 
-
-
-@Preview(showBackground = true)
-@Composable
-fun MainScreenPreview() {
-    Usb_host_tutorialTheme {
-        MainScreen(terminalText = mutableListOf("hello"))
-    }
-}
