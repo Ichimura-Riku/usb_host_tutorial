@@ -2,7 +2,6 @@ package com.example.usb_host_tutorial.di
 import android.content.Context
 import com.example.usb_host_tutorial.usecase.UsbPortManager
 import com.example.usb_host_tutorial.usecase.UsbPortManagerImpl
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

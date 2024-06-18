@@ -7,12 +7,6 @@ interface UsbPortManager {
 
     fun openPort(): Boolean
     fun closePort(): Boolean
-
-    /**
-     * わからんが、シリアルデータを流したいので、その情報をどう受け渡すか後で詰める
-     * flowとかでやりたい
-      */
     fun streamData(): UsbSerialDriver
-
     fun getPortStatus(): String
 }

@@ -1,6 +1,5 @@
 package com.example.usb_host_tutorial.usecase
 
-import android.app.Activity
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Context.USB_SERVICE
@@ -8,10 +7,8 @@ import android.content.Intent
 import android.hardware.usb.UsbDeviceConnection
 import android.hardware.usb.UsbManager
 import android.os.Build
-import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions.Companion.ACTION_REQUEST_PERMISSIONS
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat.getSystemService
 import com.hoho.android.usbserial.driver.UsbSerialDriver
 import com.hoho.android.usbserial.driver.UsbSerialPort
 import com.hoho.android.usbserial.driver.UsbSerialProber
@@ -21,7 +18,6 @@ import javax.inject.Inject
 class UsbPortManagerImpl @Inject constructor(
     private val context: Context
 ) : UsbPortManager {
-    private lateinit var _usbManager: UsbManager
     private lateinit var _availableDrivers: List<UsbSerialDriver>
     private var _portStatus = "Disconnection"
 

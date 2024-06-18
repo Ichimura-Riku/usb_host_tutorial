@@ -75,15 +75,3 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 }
 
-//dependencies {
-//    // Required -- JUnit 4 framework
-//    testImplementation "junit:junit:$jUnitVersion"
-//    // Optional -- Robolectric environment
-//    testImplementation "androidx.test:core:$androidXTestVersion"
-//    // Optional -- Mockito framework
-//    testImplementation "org.mockito:mockito-core:$mockitoVersion"
-//    // Optional -- mockito-kotlin
-//    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion"
-//    // Optional -- Mockk framework
-//    testImplementation "io.mockk:mockk:$mockkVersion"
-//}
